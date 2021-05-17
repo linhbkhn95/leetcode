@@ -1,7 +1,5 @@
 package palindrome
 
-import "fmt"
-
 func isPalindrome(x int) bool {
 
 	if x < 0 {
@@ -9,15 +7,19 @@ func isPalindrome(x int) bool {
 	}
 
 	rev := 0
-	i := 0
 	number := x
-	for remain > 10 {
-		k := x / 10
-		remain := x - k*10
-		i++
-		rev += remain*pow(10, i) + k
-		fmt.Println("rev", rev)
+	var nums []int
+	for x >= 10 {
+		remain := x % 10
+		x = x / 10
+		nums = append(nums, remain)
 	}
+	nums = append(nums, x)
+	lenNum := len(nums)
+	for i, nb := range nums {
+		rev += nb * pow(10, lenNum-1-i)
+	}
+
 	return rev == number
 }
 
