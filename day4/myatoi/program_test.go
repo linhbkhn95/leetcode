@@ -75,6 +75,20 @@ func Test_myAtoi(t *testing.T) {
 			},
 			want: 0,
 		},
+		{
+			name: "test10",
+			args: args{
+				s: "-5-",
+			},
+			want: -5,
+		},
+		{
+			name: "test10",
+			args: args{
+				s: "  +  413",
+			},
+			want: 0,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
