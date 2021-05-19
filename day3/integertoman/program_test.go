@@ -1,3 +1,4 @@
+
 package integertoman
 
 import "testing"
@@ -17,7 +18,28 @@ func Test_intToRoman(t *testing.T) {
 			args: args{ 
 				num: 1994,
 			},
-			want: "XCMXCIV",
+			want: "MCMXCIV",
+		},
+		{
+			name: "test2",
+			args: args{ 
+				num: 3,
+			},
+			want: "III",
+		},
+		{
+			name: "test3",
+			args: args{ 
+				num: 14,
+			},
+			want: "XIV",
+		},
+		{
+			name: "test3",
+			args: args{ 
+				num: 1000,
+			},
+			want: "M",
 		},
 	}
 	for _, tt := range tests {
