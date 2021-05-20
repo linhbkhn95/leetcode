@@ -1,62 +1,21 @@
 package generateparent
 
 func generateParenthesis(n int) []string {
-	// use to collect result
-	result := []string{}
-	// use to calc result
-	var stack Stack
-	findParenthesis(&result, stack, n, n, "(", "(", 1, 0)
-	return result
+	res := []string{}
+	helper(n, 0, 0, "", &res)
+	return res
 }
-
-// using tree to find result.
-func findParenthesis(bag *[]string, stack Stack, NumofParenthesisNeedcompleted int, n int, current string, pt string, left, right int) {
-	// cut branches that can not generate result.
-	if left-1 > n || right-1 > n {
+func helper(n, left, right int, temp string, res *[]string) {
+	if n == right {
+		*res = append(*res, temp)
 		return
 	}
-	if pt == "(" {
-		if NumofParenthesisNeedcompleted > 0 {
-			stack.Push(pt)
-			findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+")", ")", left, right+1)
-			findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+"(", "(", left+1, right)
-		}
-		return
+
+	if left != n {
+		helper(n, left+1, right, temp+"(", res)
 	}
-	char, ok := stack.Pop()
-	if ok && char == "(" {
-		NumofParenthesisNeedcompleted -= 1
-		if NumofParenthesisNeedcompleted == 0 {
-			if stack.IsEmpty() {
-				*bag = append(*bag, current)
-			}
-			return
-		}
-		findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+")", ")", left, right+1)
-		findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+"(", "(", left+1, right)
-	}
-}
 
-type Stack []string
-
-// IsEmpty: check if stack is empty
-func (s *Stack) IsEmpty() bool {
-	return len(*s) == 0
-}
-
-// Push a new value onto the stack
-func (s *Stack) Push(str string) {
-	*s = append(*s, str) // Simply append the new value to the end of the stack
-}
-
-// Remove and return top element of stack. Return false if stack is empty.
-func (s *Stack) Pop() (string, bool) {
-	if s.IsEmpty() {
-		return "", false
-	} else {
-		index := len(*s) - 1   // Get the index of the top most element.
-		element := (*s)[index] // Index into the slice and obtain the element.
-		*s = (*s)[:index]      // Remove it from the stack by slicing it off.
-		return element, true
+	if left > right {
+		helper(n, left, right+1, temp+")", res)
 	}
 }
