@@ -1,22 +1,16 @@
 package generateparent
 
-type Bag struct {
-	items []string
-}
-
 func generateParenthesis(n int) []string {
-	// use to coller result
-	bag := &Bag{
-		items: nil,
-	}
+	// use to collect result
+	result := []string{}
 	// use to calc result
 	var stack Stack
-	findParenthesis(bag, stack, n, n, "(", "(", 1, 0)
-	return bag.items
+	findParenthesis(&result, stack, n, n, "(", "(", 1, 0)
+	return result
 }
 
 // using tree to find result.
-func findParenthesis(bag *Bag, stack Stack, NumofParenthesisNeedcompleted int, n int, current string, pt string, left, right int) {
+func findParenthesis(bag *[]string, stack Stack, NumofParenthesisNeedcompleted int, n int, current string, pt string, left, right int) {
 	// cut branches that can not generate result.
 	if left-1 > n || right-1 > n {
 		return
@@ -34,14 +28,12 @@ func findParenthesis(bag *Bag, stack Stack, NumofParenthesisNeedcompleted int, n
 		NumofParenthesisNeedcompleted -= 1
 		if NumofParenthesisNeedcompleted == 0 {
 			if stack.IsEmpty() {
-				bag.items = append(bag.items, current)
+				*bag = append(*bag, current)
 			}
-
-		} else {
-			findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+")", ")", left, right+1)
-			findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+"(", "(", left+1, right)
-
+			return
 		}
+		findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+")", ")", left, right+1)
+		findParenthesis(bag, stack, NumofParenthesisNeedcompleted, n, current+"(", "(", left+1, right)
 	}
 }
 
