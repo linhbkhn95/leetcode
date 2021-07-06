@@ -69,3 +69,27 @@ func Solution(arr []int64) string {
 	}
 	return ""
 }
+
+func Solution1(angles string) string {
+	// Type your solution here
+	var result string
+
+	countLeft := 0
+
+	i := 0
+	for string(angles[i]) == ">" {
+		result = "<" + result
+		i++
+	}
+	for j := i; j < len(angles); j++ {
+		if string(angles[i]) == "<" {
+			countLeft++
+		} else {
+			countLeft--
+		}
+	}
+	for j := 0; j < countLeft; j++ {
+		result += ">"
+	}
+	return result
+}
