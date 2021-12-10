@@ -40,6 +40,5 @@ func say(n string) string {
 		i++
 	}
 	result += strconv.Itoa(count) + string(pre)
-
 	return result
 }
