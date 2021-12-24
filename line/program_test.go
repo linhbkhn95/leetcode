@@ -14,12 +14,26 @@ func TestSolution(t *testing.T) {
 		want int
 	}{
 		// TODO: Add test cases.
+		// {
+		// 	name: "Test1",
+		// 	args: args{
+		// 		S: "4 5 6 - 7 +",
+		// 	},
+		// 	want: 8,
+		// },
+		// {
+		// 	name: "Test1",
+		// 	args: args{
+		// 		S: "13 DUP 4 POP 5 DUP + DUP + -",
+		// 	},
+		// 	want: 7,
+		// },
 		{
-			name: "Test1",
+			name: "Test3",
 			args: args{
-				S: "4 5 6 - 7 +",
+				S: "1048575 DUP +",
 			},
-			want: 8,
+			want: -1,
 		},
 	}
 	for _, tt := range tests {

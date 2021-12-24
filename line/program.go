@@ -65,7 +65,9 @@ func Solution(S string) int {
 			if err != nil {
 				return -1
 			}
-			stack.Push(num)
+			if IsEligibleNumber(num) {
+				stack.Push(num)
+			}
 		}
 	}
 	num, ok := stack.Pop()
@@ -73,6 +75,10 @@ func Solution(S string) int {
 		return -1
 	}
 	return num
+}
+
+func IsEligibleNumber(number int) bool {
+	return number > -1 && number < 104576
 }
 
 func Solution1(S string) int {
