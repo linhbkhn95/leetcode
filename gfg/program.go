@@ -13,6 +13,7 @@ func solution(n int) string {
 	if n == 1 {
 		return "1"
 	}
+
 	if n == 2 {
 		return "11"
 	}
@@ -20,6 +21,7 @@ func solution(n int) string {
 	for i := 2; i < n; i++ {
 		res = say(res)
 	}
+
 	return res
 }
 
