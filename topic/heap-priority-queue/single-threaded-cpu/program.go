@@ -87,3 +87,5 @@ func (a *AvailableTaskQueue) Push(x any) {
 func (a AvailableTaskQueue) Swap(i int, j int) {
 	a[i], a[j] = a[j], a[i]
 }
+
+var _ heap.Interface = (*AvailableTaskQueue)(nil)
