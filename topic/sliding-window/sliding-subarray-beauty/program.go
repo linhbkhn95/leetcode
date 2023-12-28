@@ -8,9 +8,7 @@ func getSubarrayBeauty(nums []int, k int, x int) []int {
 	result := []int{}
 	sortArr := make([]int, k)
 	lastIndex := -1
-	sortedArr := &SortedArr{}
 	for i := 0; i < k; i++ {
-		sort.
 	}
 
 	for start := 0; start < l-k+1; start++ {
