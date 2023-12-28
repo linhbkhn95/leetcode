@@ -30,7 +30,7 @@ func Test_getOrder(t *testing.T) {
 					{5, 2}, {7, 2}, {9, 4}, {6, 3}, {5, 10}, {1, 1},
 				},
 			},
-			want: []int{4, 3, 2, 0, 1},
+			want: []int{5, 0, 1, 3, 2, 4},
 		},
 	}
 	for _, tt := range tests {

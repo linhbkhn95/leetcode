@@ -34,11 +34,16 @@ func getOrder(tasks [][]int) []int {
 			heap.Push(taskQueue, availableTasks[i])
 			i++
 		}
-		candicate := heap.Pop(taskQueue)
-		availTask := candicate.(*AvaibleTask)
-		result = append(result, availTask.Index)
-		endTime = endTime + availTask.ProcessingTime
-
+		if taskQueue.Len() > 0 {
+			candicate := heap.Pop(taskQueue)
+			availTask := candicate.(*AvaibleTask)
+			result = append(result, availTask.Index)
+			endTime = endTime + availTask.ProcessingTime
+		} else if i < l {
+			result = append(result, availableTasks[i].Index)
+			endTime = availableTasks[i].EnqueueTime + availableTasks[i].ProcessingTime
+			i++
+		}
 	}
 	for taskQueue.Len() > 0 {
 
