@@ -27,6 +27,30 @@ func Test_insert(t *testing.T) {
 				{1, 5}, {6, 9},
 			},
 		},
+		{
+			name: "",
+			args: args{
+				intervals: [][]int{
+					{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16},
+				},
+				newInterval: []int{4, 8},
+			},
+			want: [][]int{
+				{1, 2}, {3, 10}, {12, 16},
+			},
+		},
+		{
+			name: "",
+			args: args{
+				intervals: [][]int{
+					{3, 5}, {12, 15},
+				},
+				newInterval: []int{6, 6},
+			},
+			want: [][]int{
+				{3, 5}, {6, 6}, {12, 15},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
