@@ -21,7 +21,7 @@ func Solution1(x string, y string) bool {
 	return count == l2
 }
 
-func Solution(connections []string, name1 string, name2 string) int {
+func Solution2(connections []string, name1 string, name2 string) int {
 	// Implement your solution here
 	mapping := make(map[string][]string, 0)
 	for _, conn := range connections {
