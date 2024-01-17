@@ -1,6 +1,32 @@
 package permutationinstring
 
 func checkInclusion(s1 string, s2 string) bool {
+	fingerprint := [26]int{}
+	for _, c := range s1 {
+		fingerprint[c-97]++
+	}
+	l1 := len(s1)
+	for i, c := range s2 {
+		if fingerprint == [26]int{} {
+			return true
+		}
+		fingerprint[c-97]--
+		if i-l1 >= 0 {
+			fingerprint[s2[i-l1]-97]++
+		}
+	}
+	return fingerprint == [26]int{}
+}
+
+/*
+ab
+cabc
+[1,1,0,0.....0] 26 elements
+-->
+
+*/
+
+func checkInclusion1(s1 string, s2 string) bool {
 	l1, l2 := len(s1), len(s2)
 	if l1 > l2 {
 		return false
