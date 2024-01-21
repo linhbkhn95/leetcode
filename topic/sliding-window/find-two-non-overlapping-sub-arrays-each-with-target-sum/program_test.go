@@ -36,14 +36,14 @@ func Test_minSumOfLengths(t *testing.T) {
 		// 	},
 		// 	want: -1,
 		// },
-		// {
-		// 	name: "",
-		// 	args: args{
-		// 		arr:    []int{1, 6, 1},
-		// 		target: 7,
-		// 	},
-		// 	want: -1,
-		// },
+		{
+			name: "",
+			args: args{
+				arr:    []int{1, 6, 1},
+				target: 7,
+			},
+			want: -1,
+		},
 		// {
 		// 	name: "",
 		// 	args: args{
@@ -60,14 +60,14 @@ func Test_minSumOfLengths(t *testing.T) {
 		// 	},
 		// 	want: 6,
 		// },
-		{
-			name: "",
-			args: args{
-				arr:    []int{2, 2, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-				target: 20,
-			},
-			want: 23,
-		},
+		// {
+		// 	name: "",
+		// 	args: args{
+		// 		arr:    []int{2, 2, 4, 4, 4, 4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+		// 		target: 20,
+		// 	},
+		// 	want: 23,
+		// },
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
