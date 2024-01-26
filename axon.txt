@@ -1,0 +1,104 @@
+
+
+Own -> user
+Permission
+    - Supervisor -> view/search their slave's notes
+    - Agenices wont see other agencies
+    - 
+Note
+ - Title
+ - Content
+ - Author
+ - CreatedAt
+
+Supervisor
+ - userID
+ - parentID
+
+User
+ - ID
+ - Name
+ - AgencyID
+
+Agencies
+ - ID
+ - Name
+
+
+
+Search by tilte, Content -> text search -> ES
+
+100000 records is created everyday -> discovery service
+
+// exactly query for Supervisor
+DB -> prefer RDMS
+-> sharding data
+
+
+Interface
+
+1. POST /api/v1/notes
+request:
+ - userID -> extract from context or token.
+ - title
+ - content
+
+response:
+ - id 
+ - authorID
+ - title
+ - content
+
+errors:
+ - 
+
+2. PUT /api/v1/notes/{id}
+request:
+ - title
+ - content
+
+response:
+  
+3. GET /api/v1/notes/{id}
+
+response:
+ - id
+ - authorID
+ - title
+ - content
+
+  
+3. GET /api/v1/notes/search
+
+request:
+ - query: 
+    
+ - cursor: int64
+
+response
+ - result:
+     - notes : array of notes
+ - lastCursor: int64
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
