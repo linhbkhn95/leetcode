@@ -12,14 +12,14 @@ func Test_isIsomorphic(t *testing.T) {
 		args args
 		want bool
 	}{
-		//{
-		//	name: "",
-		//	args: args{
-		//		s: "egg",
-		//		t: "add",
-		//	},
-		//	want: true,
-		//},
+		{
+			name: "",
+			args: args{
+				s: "egg",
+				t: "add",
+			},
+			want: true,
+		},
 		{
 			name: "",
 			args: args{
