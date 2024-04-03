@@ -13,16 +13,3 @@ func maximumStrongPairXor(nums []int) int {
 	}
 	return maxV
 }
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
-}
-
-func max(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}
