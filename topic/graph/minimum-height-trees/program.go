@@ -10,10 +10,7 @@ func findMinHeightTrees(n int, edges [][]int) []int {
 	hightTreeResult := make(map[int]int)
 	arr := make([]int, n)
 	for i := 0; i < n; i++ {
-		footprint[i] = true
-		arr[i] = dfs(nodes, i, footprint, hightTreeResult)
-		delete(footprint, i)
-
+		arr[i] = dfs(nodes, n, i, footprint, hightTreeResult)
 	}
 	result := []int{}
 	minV := n
@@ -28,29 +25,27 @@ func findMinHeightTrees(n int, edges [][]int) []int {
 	return result
 }
 
-func dfs(nodes map[int][]int, node int, footprint map[int]bool, hightTreeResult map[int]int) int {
-
+func dfs(nodes map[int][]int, n, node int, footprint map[int]bool, hightTreeResult map[int]int) int {
+	if footprint[node] {
+		return n
+	}
 	nds, ok := nodes[node]
 	if !ok {
 		return 0
 	}
-	var maxV int
-	for _, n := range nds {
-
+	var minV int
+	footprint[n] = true
+	for _, nn := range nds {
 		if v, ok := hightTreeResult[n]; ok {
-			maxV = max(maxV, v+1)
+			minV = min(minV, v+1)
 			if 1+v > hightTreeResult[node] {
 				hightTreeResult[node] = 1 + v
 			}
 			continue
 		}
-		if footprint[n] {
-			continue
-		}
-		footprint[n] = true
-		maxV = max(maxV, 1+dfs(nodes, n, footprint, hightTreeResult))
-		delete(footprint, n)
+		minV = min(minV, 1+dfs(nodes, n, nn, footprint, hightTreeResult))
 	}
-	hightTreeResult[node] = maxV
-	return maxV
+	delete(footprint, node)
+	hightTreeResult[node] = minV
+	return minV
 }

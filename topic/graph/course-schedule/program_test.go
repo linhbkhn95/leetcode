@@ -12,27 +12,27 @@ func Test_canFinish(t *testing.T) {
 		args args
 		want bool
 	}{
-		// {
-		// 	name: "",
-		// 	args: args{
-		// 		numCourses: 2,
-		// 		prerequisites: [][]int{
-		// 			{0, 1},
-		// 		},
-		// 	},
-		// 	want: true,
-		// },
-		// {
-		// 	name: "",
-		// 	args: args{
-		// 		numCourses: 2,
-		// 		prerequisites: [][]int{
-		// 			{0, 1},
-		// 			{1, 0},
-		// 		},
-		// 	},
-		// 	want: false,
-		// },
+		{
+			name: "",
+			args: args{
+				numCourses: 2,
+				prerequisites: [][]int{
+					{0, 1},
+				},
+			},
+			want: true,
+		},
+		{
+			name: "",
+			args: args{
+				numCourses: 2,
+				prerequisites: [][]int{
+					{0, 1},
+					{1, 0},
+				},
+			},
+			want: false,
+		},
 		{
 			name: "",
 			args: args{
