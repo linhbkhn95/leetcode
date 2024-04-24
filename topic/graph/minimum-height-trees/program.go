@@ -1,51 +1,60 @@
 package main
 
 func findMinHeightTrees(n int, edges [][]int) []int {
-	nodes := make(map[int][]int, 0)
-	for _, edge := range edges {
-		nodes[edge[0]] = append(nodes[edge[0]], edge[1])
-		nodes[edge[1]] = append(nodes[edge[1]], edge[0])
-	}
-	footprint := make(map[int]bool)
-	hightTreeResult := make(map[int]int)
-	arr := make([]int, n)
-	for i := 0; i < n; i++ {
-		arr[i] = dfs(nodes, n, i, footprint, hightTreeResult)
-	}
-	result := []int{}
-	minV := n
-	for i, v := range arr {
-		if minV > v {
-			minV = v
-			result = []int{i}
-		} else if minV == v {
-			result = append(result, i)
+	if n <= 1 {
+		ans := make([]int, 0)
+		for i := 0; i < n; i++ {
+			ans = append(ans, i)
 		}
+		return ans
 	}
-	return result
-}
 
-func dfs(nodes map[int][]int, n, node int, footprint map[int]bool, hightTreeResult map[int]int) int {
-	if footprint[node] {
-		return n
-	}
-	nds, ok := nodes[node]
-	if !ok {
-		return 0
-	}
-	var minV int
-	footprint[n] = true
-	for _, nn := range nds {
-		if v, ok := hightTreeResult[n]; ok {
-			minV = min(minV, v+1)
-			if 1+v > hightTreeResult[node] {
-				hightTreeResult[node] = 1 + v
-			}
-			continue
+	graph := make(map[int][]int)
+	inDegree := make([]int, n)
+
+	for _, edge := range edges {
+		if _, ok := graph[edge[0]]; !ok {
+			graph[edge[0]] = make([]int, 0)
 		}
-		minV = min(minV, 1+dfs(nodes, n, nn, footprint, hightTreeResult))
+
+		if _, ok := graph[edge[1]]; !ok {
+			graph[edge[1]] = make([]int, 0)
+		}
+
+		graph[edge[0]] = append(graph[edge[0]], edge[1])
+		graph[edge[1]] = append(graph[edge[1]], edge[0])
+		inDegree[edge[0]]++
+		inDegree[edge[1]]++
 	}
-	delete(footprint, node)
-	hightTreeResult[node] = minV
-	return minV
+
+	queue := make([]int, 0)
+
+	// find leaf nodes
+	for i, degree := range inDegree {
+		if degree == 1 {
+			queue = append(queue, i)
+		}
+	}
+
+	for n > 2 {
+		size := len(queue)
+		n -= size
+
+		for i := 0; i < size; i++ {
+			inDegree[queue[i]]--
+
+			for _, to := range graph[queue[i]] {
+				inDegree[to]--
+
+				// next round leaf node
+				if inDegree[to] == 1 {
+					queue = append(queue, to)
+				}
+			}
+		}
+
+		queue = queue[size:]
+	}
+
+	return queue
 }
