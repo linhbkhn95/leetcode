@@ -1,7 +1,5 @@
 package maxsumofapairwithequalsumofdigits
 
-import "strconv"
-
 func maximumSum(nums []int) int {
 	top2Nums := make(map[int][2]int, 0)
 	result := -1
@@ -37,11 +35,10 @@ func max(a, b int) int {
 }
 
 func sumOfDigits(num int) int {
-	numStr := strconv.Itoa(num)
 	result := 0
-	for i := range numStr {
-		num, _ := strconv.Atoi(string(numStr[i]))
-		result += num
+	for num > 0 {
+		result += num % 10
+		num = num / 10
 	}
 	return result
 }
