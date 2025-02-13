@@ -11,7 +11,7 @@ func minOperations(nums []int, k int) int {
 	}
 	result := 0
 	var min1, min2, newNum int
-	for minHeap.Len() > 1 {
+	for minHeap.Len() > 0 {
 		min1 = heap.Pop(minHeap).(int)
 		if min1 >= k {
 			return result
@@ -20,10 +20,6 @@ func minOperations(nums []int, k int) int {
 		newNum = min1*2 + min2
 		heap.Push(minHeap, newNum)
 		result += 1
-	}
-	min1 = heap.Pop(minHeap).(int)
-	if min1 >= k {
-		return result
 	}
 	return -1
 }

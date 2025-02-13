@@ -12,18 +12,18 @@ func Test_minOperations(t *testing.T) {
 		args args
 		want int
 	}{
-		// {
-		// 	name: "1",
-		// 	args: args{
-		// 		nums: []int{2, 11, 10, 1, 3},
-		// 		k:    10,
-		// 	},
-		// 	want: 2,
-		// },
+		{
+			name: "1",
+			args: args{
+				nums: []int{2, 11, 10, 1, 3},
+				k:    10,
+			},
+			want: 2,
+		},
 		{
 			name: "2",
 			args: args{
-				nums: []int{1, 1, 2, 4, 9},
+				nums: []int{1,1,2,4,9},
 				k:    20,
 			},
 			want: 4,
